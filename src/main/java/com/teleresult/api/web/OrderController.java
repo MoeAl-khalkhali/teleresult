@@ -16,17 +16,19 @@ import java.util.Date;
 @CrossOrigin(origins = "*")
 @RequestMapping("/orders")
 public class OrderController {
+    @Autowired
     private OrderService orderService;
+    @Autowired
     private OrderRepository orderRepository;
 
     @GetMapping("/{id}")
     public ResponseEntity<?> getOrderById(@PathVariable(value = "id") Long id){
             try{
-            Order user =
-                    orderRepository
-                            .findById(id)
+            Order order =
+                    orderService
+                            .getOrderById(id)
                             .orElseThrow(() -> new Exception("Order not found on :: " + id));
-            return ResponseEntity.ok().body(user);
+            return ResponseEntity.ok().body(order);
             }  catch (Exception e)
         {
             return ResponseEntity.ok().body("Order " + id + "does not exist");
@@ -34,7 +36,10 @@ public class OrderController {
     }
     @PostMapping()
     public ResponseEntity<?> createdNewOrder(@RequestBody Order order) {
-        orderRepository.save(order);
+        Order order_return = orderService.createOrder(order);
+        if (order_return == null){
+            return ResponseEntity.ok().body("Order ID already exists");
+        }
         return ResponseEntity.ok().body(order);
     }
     @GetMapping("/{type}/{date}")
