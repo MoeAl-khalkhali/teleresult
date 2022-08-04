@@ -11,6 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 @Service
 public class OrderService {
+    @Autowired
     private OrderRepository orderRepository;;
     public OrderView getOrderByTypeAndDate(String type, Date date){
 //        Store customers in list
@@ -30,6 +31,11 @@ public class OrderService {
             order_ids.add(order.getId());
         }
         return new OrderView(orders.size(), type, customers, order_ids);
+    }
+    public Order createOrder(Order order) {
+        orderRepository.save(order);
+        return order;
+
     }
 
 }

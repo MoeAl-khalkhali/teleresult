@@ -1,6 +1,7 @@
 package com.teleresult.api.model;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.sun.istack.NotNull;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
 
@@ -13,13 +14,18 @@ import java.sql.Date;
 public class Order {
     @javax.persistence.Id
     @Id
+    @NotNull
     private long id;
+    @NotNull
     private String title;
+    @NotNull
     @JsonFormat(pattern = "yyyy-MM-dd")
     @Column(name = "date", nullable = false)
     private Date date;
+    @NotNull
     @Column(name = "type", nullable = false)
     private String type;
+    @NotNull
     private String customer;
 
     public String getCustomer() {

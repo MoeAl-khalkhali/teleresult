@@ -16,6 +16,7 @@ import java.util.Date;
 @CrossOrigin(origins = "*")
 @RequestMapping("/orders")
 public class OrderController {
+    @Autowired
     private OrderService orderService;
     private OrderRepository orderRepository;
 
@@ -29,12 +30,12 @@ public class OrderController {
             return ResponseEntity.ok().body(user);
             }  catch (Exception e)
         {
-            return ResponseEntity.ok().body("Order " + id + "does not exist");
+            return ResponseEntity.ok().body("Order " + id + " does not exist");
         }
     }
     @PostMapping()
     public ResponseEntity<?> createdNewOrder(@RequestBody Order order) {
-        orderRepository.save(order);
+        orderService.createOrder(order);
         return ResponseEntity.ok().body(order);
     }
     @GetMapping("/{type}/{date}")
