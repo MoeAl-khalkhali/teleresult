@@ -34,7 +34,10 @@ Assumptions:
 - No malicious attempt are made
 - A customer entity is not required
 
-# What I would have liked to add
+# Thoughts on the test
+- The test was quite fun, i enjoyed completing it.
+
+# What I would have liked to add if i had more time
 - API checked, further parameter validation on the requests made on the API, ensuring they meet the requirements
 - Further Unit Tests, would like to have added more tests, testing the service and controller
 - Adding a proper customer class with a onetomany relationship with the orders.
