@@ -31,7 +31,7 @@ public class OrderController {
             return ResponseEntity.ok().body(order);
             }  catch (Exception e)
         {
-            return ResponseEntity.ok().body("Order " + id + "does not exist");
+            return ResponseEntity.ok().body("Order " + id + " does not exist");
         }
     }
     @PostMapping()
